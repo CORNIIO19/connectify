@@ -1,0 +1,744 @@
+/* Aqui se importan las fuentes usadas  */
+@import url('https://fonts.googleapis.com/css2?family=Cascadia+Mono:ital,wght@0,200..700;1,200..700&family=Krona+One&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+/* Aqui se declaran las variables de diferenes tipos, color, tamanos, letras, etc. */
+:root{
+
+  --color-primario: #f5c542;
+  --color-secundario: #7a7c7c;
+
+}
+
+
+html{
+  scroll-behavior: smooth; /*efecto para que el scroll sea mas suave y no tan duro*/
+  margin: 0;
+  padding: 0;
+}
+
+/* estilo para la animacion del scroll en modo diapositivas */
+
+
+.main {
+  height: 100vh;
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
+  transition-delay:3s ;
+}
+
+section {
+  height: 100vh;
+  scroll-snap-align: start;
+  display: flex;
+  /* justify-content: center; */
+  /* align-items: center; */
+  /* font-size: 3rem; */
+  /* padding: 2rem; */
+}
+
+body{ 
+    width: 100%;
+    /* scroll-behavior: smooth;*/
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+* {
+  box-sizing: border-box;
+  scrollbar-color: #ffffff; /* thumb and track color */
+  /* scrollbar-width: 0px; */
+  padding: 0;
+  margin: 0;
+  -ms-overflow-style: none;
+}
+
+*::-webkit-scrollbar {
+  width: 0;
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: transparent;
+  border: none;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 40px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-size: cover;
+  /* background-image: linear-gradient(#ffffff , #8c8c8c); */
+  background-color: transparent;
+  height: 100px;
+  z-index: 9999;
+  transition: transform 0.3s ease;
+  transition: opacity 0.6s ease, transform 0.6s ease;
+  transform: translateY(0);
+}
+
+
+/* .header.transparent {
+  background-color: transparent; /* Solo en .carousel
+} */
+
+.header-hidden {
+  transform: translateY(-100%);
+  transition: transform 0.3s ease-in-out;
+}
+
+.header__logoContainer,
+.header__redesSociales {
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+
+.header__nav {
+  display: flex;
+  justify-content: space-between;
+  gap: 50px;
+}
+
+.header__logoContainer {
+  justify-content: flex-start;
+  margin-right: 2%;
+}
+
+.header__redesSociales {
+  justify-content: flex-end;
+  gap: 50px;
+}
+
+.header__redesSociales__logo {
+  height: 50px;
+  cursor: pointer;
+}
+
+.link-header {
+  color: black;
+  text-decoration: none;
+  font-family:  "Poppins", mono;
+  font-size: 1.1rem;
+  font-weight: 400;
+  transition: color 0.3s;
+}
+
+.link-header_identeidad{
+  color: black;
+  text-decoration: none;
+  font-family:  "Poppins", mono;
+  font-size: 1.1rem;
+  font-weight: 600;
+  transition: color 0.3s;
+}
+
+.link-header:hover{
+  color: #ffffff; /* Color al pasar el cursor */
+}
+
+.link-header_identeidad:hover{
+  color: #ffffff; /* Color al pasar el cursor */
+}
+
+.header__logo {
+  max-width: 350px;
+  height: auto;
+}
+
+/* ------- Header alternativo para demas secciones--------- */
+
+.header__secundario{
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 15px 40px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-size: cover;
+  /* background-image: linear-gradient(#ffffff , #8c8c8c); */
+  background-color: transparent;
+  height: 100px;
+  z-index: 9999;
+  transition: transform 0.3s ease;
+  transition: opacity 0.6s ease, transform 0.6s ease;
+  transform: translateY(0);
+}
+
+
+/* .header.transparent {
+  background-color: transparent; /* Solo en .carousel
+} */
+
+
+.header__logoContainer{
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.header__nav {
+  display: flex;
+  justify-content: space-between;
+  gap: 100px;
+  margin-left: 5%;
+}
+
+.link-header, .link-header_secundario {
+  color: black;
+  text-decoration: none;
+  font-family:  "Poppins", mono;
+  font-size: 1.1rem;
+  font-weight: 400;
+  transition: color 0.3s;
+}
+
+.link-header_identeidad{
+  color: black;
+  text-decoration: none;
+  font-family:  "Poppins", mono;
+  font-size: 1.1rem;
+  font-weight: 600;
+  transition: color 0.3s;
+}
+
+.link-header:hover, .link-header_identeidad:hover, .link-header_secundario:hover{
+  color: #ffffff; /* Color al pasar el cursor */
+}
+
+.header__secundario__contacto:hover{
+  border: 2px solid #ffffff;
+  color: #ffffff;
+  /* transition: color 0.3s; */
+}
+
+.header__secundario__contacto{
+  display: flex;
+  border: 2px solid #000000;
+  border-radius: 30px;
+  justify-content: center;
+  align-items: center;
+  margin-left: 5%;
+  width: 10%;
+  height: 70%;
+  transition: border 0.3s;
+}
+
+.header__logo {
+  max-width: 350px;
+  height: auto;
+}
+
+.hidden {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-20px);
+}
+/* -------------------Aqui termina header secundario------ */
+
+
+.hero-banner {
+  width: 100%;
+  height: 100vh; 
+  /* Asegura un fondo amarillo y desactiva imágenes inline */
+  background-image: none !important;
+  background-color: var(--color-primario);
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: row-reverse;
+}
+
+
+.hero-content {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  z-index: 1;
+  color: #ffffff;
+  /* backdrop-filter: ; sirve para poner una parte de la imagen con algun estilo, blur, sepia o neativo*/
+  padding: 2rem;
+  text-align: center;
+  margin-top: 20%;
+  width: 75%;
+  height: 100%;
+}
+
+.hero-title {
+  display: flex;
+  font-size: 4.5rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  line-height: .8;
+  font-family:  "Montserrat", sans-serif;
+  margin-right: 40%;
+  margin-left: 20% ;
+}
+
+.hero-title__marca{
+  font-family:  "Montserrat", sans-serif;
+  color: #000000;
+}
+
+.hero-subtitle {
+  padding-top: 2.5%;
+  padding-right: 16%;
+  margin-right: 10%;
+  font-size: 2rem;
+  font-weight: 200;
+  font-family: "Poppins", serif;
+  color:#ffffff;
+  margin-left: 8%;
+}
+
+.hero-content__rigth{
+  width: 25%;
+  height: 100%;
+  display: flex;
+  align-items: flex-end;
+  margin-bottom: 10%;
+}
+
+.content__rigth__boton{
+  width: 50%;
+  height: 25%;
+}
+
+/* -----------carrusel identidad ----------------- */
+.carousel{
+width: 100vw;
+height: 100vh;
+}
+
+.carousel__clientes {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  color:#ffffff;
+}
+
+.carousel__clientes-track-container {
+  overflow: hidden;
+  width: 100%;
+}
+
+.carousel__clientes-track {
+  display: flex;
+  width: auto;
+  transition: transform 0.5s ease-in-out;
+}
+
+.carrusel__slide1{
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: row;
+  flex-shrink: 0;
+  background-image: linear-gradient(to right, #fccc04 , #7a7c7c);
+}
+
+.slide1__texto{
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+}
+
+.slide1__texto__titulo{
+  color: #ffffff;
+  font-family: 'Monteserrat', sans-serif;
+  font-size: 5rem;
+  font-weight: 600;
+  margin-top: 10%;
+  margin-left: 10%;
+  text-align: center;
+}
+
+.slide1__texto__subtitulo{
+  color: #ffffff;
+  font-family: 'Monteserrat', sans-serif;
+  font-size: 2.5rem;
+  margin-left: 10%;
+  text-align: center;
+}
+
+.slide1__texto__parrafo{
+  color: #ffffff;
+  font-family: "Lato", sans-serif;
+  font-size: 2rem;
+  margin-top: 10%;
+  margin-left: 10%;
+  text-align: center;
+}
+
+.slide1__imagen{
+  width: 40%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+
+.carrusel__slide2{
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: row;
+  background-image: linear-gradient(to right, #7a7c7c, #fccc04);
+  flex-shrink: 0;
+}
+
+.slide2__texto{
+  Width: 50%;
+  display: flex;
+  flex-direction: column;
+}
+
+.slide2__texto__parrafo{
+  color:#ffffff;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 3.2rem;
+  font-weight: 500;
+  margin-top: 15%;
+  margin-left: 10%;
+  text-align: justify;
+}
+
+.slide2__texto__parrafo2{
+  color:#ffffff;
+  font-family: 'Segoe UI', sans-serif;
+  font-size: 3.8rem;
+  margin-top: 5%;
+  margin-left: 10%;
+  text-align: justify;
+}
+
+.carrusel__slide3 {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: row;
+  background-image: linear-gradient(to right, #fccc04 , #7a7c7c);
+  flex-shrink: 0;
+}
+
+.slide3__texto{
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  margin-left: 5%;
+  margin-top: 10%;
+}
+
+.slide3__texto__titulo{
+  font-family: 'Montserrat', sans-serif;
+  font-size: 2.8rem;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.slide3__texto__parrafo{
+  font-family: 'Montserrat', sans-serif;
+  font-size: 2rem;
+  font-weight: 500;
+  color: #ffffff;
+  margin-top: 10%;
+}
+
+
+.slide3__imagen{
+  display: flex;
+  align-items: center;
+  width: 60%;
+}
+
+.imagen{
+  width:120%;
+}
+
+.carrusel__slide4{
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: row;
+  background-image: linear-gradient(to right, #7a7c7c, #fccc04);
+  flex-shrink: 0;
+}
+
+.slide4__texto{
+  width: 50%;
+  flex-direction: column;
+  margin-left: 5%;
+  margin-top: 10%;
+}
+
+.slide4__texto__titulo{
+  font-family: 'Montserrat', sans-serif;
+  color: #f8f8f8;
+  font-size: 4rem;
+  font-weight: 900;
+  text-align: center;
+}
+
+.slide4__texto__parrafo{
+  font-family: 'Segoe UI', sans-serif;
+  font-size: 3rem;
+  color: #f8f8f8;
+  margin-top: 5%;
+  text-align: center;
+}
+
+.slide4__imagen{
+  width: 50%;
+}
+
+
+
+.carousel-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(253, 253, 253, 0.5);
+  border: none;
+  color: rgb(10, 9, 9);
+  font-size: 2rem;
+  cursor: pointer;
+  padding: 10px;
+}
+
+.carousel-button.prev {
+  left: 10px;
+}
+
+.carousel-button.next {
+  right: 10px;
+}
+/* -----------carrusel termina aqui de la identidad------------------ */
+
+.main__experiencias{
+  background-color: #8c8c8c;
+    padding: 15%;
+    border-radius: 10px;
+}
+
+.main__experiencias h2 {
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+    font-family:  "Poppins", sans-serif;
+}
+.main__servicios{
+    background-color: #8c8c8c;
+    padding: 15%;
+    border-radius: 10px;
+}
+
+.main__servicios h2 {
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+    font-family:  "Poppins", sans-serif;
+}
+
+/* .clientes__carrusel{
+  display: flex;
+  align-items: flex-end ;
+  margin-bottom: 5%;
+} */
+
+.clientes__titulo{  
+  font-family: "Poppins", sans-serif;
+  font-weight: 700;
+  color: #ffffff;
+  font-size: 2.5rem;
+  /* padding-right: 2%; */
+  margin-left: 2.5%;
+  margin-bottom: 2.5%;
+  
+}
+/* -----------ajustar esta parte------------ */
+.carousel-wrapper {
+  overflow: hidden;
+  width: 100%;
+  margin-right: 5%;
+  margin-bottom: 2.5%;
+}
+
+.carousel-track {
+  display: flex;
+  animation: scroll 30s linear infinite;
+  align-items: center;
+}
+
+.carousel-item {
+  width: 200px;
+  margin: 0 10px;
+  transition: transform 0.3s ease;
+}
+
+.carousel-item:hover {
+  transform: scale(1.2);
+  z-index: 1;
+}
+
+/* Animación de desplazamiento continuo */
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-2200px);
+  }
+}
+/* -------------ajustar esta parte---------------- */
+
+.main__cobertura{
+  background-color: #ffffff;
+  padding: 15%;
+  border-radius: 10px;
+}
+
+.main__cobertura h2 {
+  color: white;
+  text-shadow: 2px 2px 4px rgba(255, 255, 255, 0);
+  font-family:  "Poppins", sans-serif;
+}
+
+.main__contactanos{
+  display: flex;
+  flex-direction: row;
+}
+
+.contactanos__medios{
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  background-color: #f8f8f8;
+  align-items: center;
+  justify-content: center;
+}
+
+.medios__logo{
+  width: 100%;
+}
+
+.medios__correo{
+  color: #000000;
+  font-family: 'Segoe UI', sans-serif;
+  font-weight: 300;
+  font-size: 1.5rem;
+  margin-top: 2%;
+}
+
+.medios__telefono{
+  color: #000000;
+  font-family: 'Segoe UI', sans-serif;
+  font-size: 1.5rem;
+  margin-top: 2%;
+  font-weight: 300;
+}
+
+.medios__iconos{
+  display: flex;
+  flex-direction: row;
+  gap: 40px;
+  margin-top: 3%;
+  height: 20%;
+  width:40%;
+  margin-top: 3%;
+}
+
+.icono__logos{
+  width: 70%;
+}
+
+
+.contactanos__formulario{
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  background-color: #ffffff;
+}
+
+.formulario{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  font-family: 'Segoe UI',sans-serif;
+  /* margin-top: 15%; */
+  /* margin-left: 5%; */
+  /* padding-top: 5%; */
+}
+
+.formulario__titulo{
+  font-family: 'Segoe UI', sans-serif;
+  color: #000000;
+  font-weight: 500;
+  font-size: 2rem;
+  padding-top: 10%;
+  padding-left: 5%; 
+}
+
+.titulo{
+  font-family: 'Segoe UI', sans-serif;
+  color: #000000;
+  font-weight: 500;
+  font-size: 1.5rem;
+}
+
+
+.footer{
+  background-color: #ffffff;
+  display: flex;
+  /* padding-top: 10%; */
+  justify-content: center;
+  align-items: center;
+}
+
+/* hr.solid {
+  border-top: 3px solid #363131;
+} */
+
+
+/* aqui empieza los estilos para hacer la pagina responsiva sin usar cosas raras */
+@media (max-width: 1200px) {
+
+    .header{
+        padding: 10%;
+    }
+    
+    .header__menu{
+        justify-content: center;
+        gap: 20%;
+        
+    }
+
+    .header__menu__link{
+        font-size: 0.85rem;
+    }
+
+
+    .presentacion{
+        flex-direction: column-reverse;
+        padding: 5%;
+    }
+
+    .presentacion__contenido{
+        width: auto;
+    }
+
+
+}
+

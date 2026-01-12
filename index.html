@@ -1,0 +1,250 @@
+<!-- Notas Generales del codigo: al final quitar las etiquetas de hr para los divisores -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connectify</title>
+    <link rel="stylesheet" href="./Style/Style.css">
+    <link rel="icon" type="image/x-icon" href="./Assets/Icono_Pagina.png">
+</head>
+
+<body>
+  
+    <!-- barra de navegacion de la pagina web -->
+    <header class="header hidden" id="header">
+      <!-- Logo de Connectify izquierda -->
+      <div class="header__logoContainer">
+        <a href="#hero"><img src="./Assets/Logo sin fondo.png" alt="Logo Connectify header" class="header__logo"></a>
+      </div>
+      
+      <!-- Links de la pagina en la barra de navegacion  -->
+      <nav class="header__nav">
+        <a href="#quienesSomos" class="link-header_identeidad">Nuestra Conexión</a>
+        <a href="#experiencias" class="link-header">Historias Conectadas</a>
+        <a href="#servicios" class="link-header">Soluciones en Red</a>
+        <a href="#cobertura" class="link-header">Hasta Dónde llegamos</a>
+      </nav>
+
+      <!-- Logos de las redes sociales en la parte derecha de la barra de navegacion -->
+      <div class="header__redesSociales">
+        <a target="_blank" href="https://api.whatsapp.com/qr/S3LHXVGHBQUHL1?autoload=1&app_absent=0">
+          <img src="./Assets/logo-whatssapp.png" alt="Whatsapp" class="header__redesSociales__logo">
+        </a>
+        <a target="_blank" href="https://www.instagram.com/c0nnectify/?igsh=bWI2OGFpaXg0cXNv#">
+          <img src="./Assets/logo-instagram.png" alt="instagram" class="header__redesSociales__logo">
+        </a>
+        <a target="_blank" href="https://www.facebook.com">
+          <img src="./Assets/facebook.png" alt="facebook" class="header__redesSociales__logo">
+        </a>
+      </div>
+
+  </header>
+
+  <!-- ----------------------------------------------------------- -->
+
+    <!-- barra de navegacion de la pagina web -->
+    <header class="header__secundario hidden" id="header__secundario">
+      
+      <!-- Links de la pagina en la barra de navegacion  -->
+      <nav class="header__nav">
+        <a href="#quienesSomos" class="link-header_identeidad">Nuestra Conexión</a>
+        <a href="#experiencias" class="link-header">Historias Conectadas</a>
+        <a href="#servicios" class="link-header">Soluciones en Red</a>
+        <a href="#cobertura" class="link-header">Hasta Dónde llegamos</a>
+      </nav>
+
+      <div class="header__secundario__contacto">
+          <a href="#contactanos" class="link-header_secundario"> ¿Conectamos?</a>
+      </div>
+
+      <div class="header__logoContainer">
+        <a href="#hero"><img src="./Assets/Logo sin fondo.png" alt="Logo Connectify header" class="header__logo"></a>
+      </div>
+  </header>
+
+
+
+  <!-- aqui empieza el contenido de la pagina, todo el esqueleto -->
+  <main id="main" class="main">
+          
+    <section class="hero-banner" id="hero" style="background-image: url('./Assets/Carr1.png');">
+      
+      <!-- Boton de contacto en el hero -->
+      <div class="hero-content__rigth">
+        <a class="rigth__link" href="#contactanos">
+          <img class="content__rigth__boton" src="./Assets/Boton Conecty.png" alt="Boton Contacto">
+        </a>
+      </div>
+      
+      <div class="hero-content">
+        <h1 class="hero-title"><span class="hero-title__marca">C</span>onectando</h1> 
+        <h1 class="hero-title">Experiencias</h1>  
+        <p class="hero-subtitle">Diseñamos soluciones de conectividad a la medida de tu evento</p>
+      </div>
+
+    </section>
+
+    <!-- aqui va el carousel de imagenes con algunos textos, para generar marca -->
+    <section id="quienesSomos" class="carousel">
+
+      <div class="carousel__clientes">
+        <div class="carousel__clientes-track-container">
+          <div class="carousel__clientes-track">
+
+            <div class="carrusel__slide1">
+                <div class="slide1__texto">
+                  <p class="slide1__texto__titulo">Hola, Somos Connectify</p>
+                  <p class="slide1__texto__subtitulo">La experienciade un evento sin interrupciones</p>
+                  <p class="slide1__texto__parrafo">Detras de cada solucion hay un equipo de expertos apasionados por conectar personas. Estamos comprometidos a hacer de tu proyecto, nuestro proyecto</p>
+                </div>
+                <div class="slide1__imagen">
+                </div>
+            </div>
+
+            <div class="carrusel__slide2">
+              <div class="slide2__texto">
+                  <p class="slide2__texto__parrafo">Porque cada gran momento merece una conexion perfecta.</p>
+                  <p class="slide2__texto__parrafo2">En Connectify, eliminamos las preocupaciones tecnicas para que tus invitados se centren solo en vivir la experiencia</p>
+                  <!-- <p>Detras de cada solucion hay </p> -->
+                </div>
+                <div class="slide2__imagen">
+                </div>
+            </div>
+
+            <div class="carrusel__slide3">
+              <div class="slide3__texto">
+                <p class="slide3__texto__titulo">Soluciones de red disenadas a la medida de tu evento</p>
+                <p class="slide3__texto__parrafo">Analizamos cada detalle de tu evento disenamos una red a la medida y la implementamos con soporte continuo, garantizando una conectividad tan solida como tu vision</p>
+              </div>
+              <div class="slide3__imagen">
+                <img src="./Assets/Slides_Images/imagen_Slide1.png" class="imagen">
+              </div>
+            </div>
+
+            <div class="carrusel__slide4">
+              <div class="slide4__texto">
+                <p class="slide4__texto__titulo">Estamos listos</p>
+                <p class="slide4__texto__parrafo">Hablemos de tus necesidades y juntos transformaremos tu proximo evento en un exito rotundo</p>
+              </div>
+              <div class="slide4__imagen">
+              </div>
+            </div>
+          </div>
+          <!-- Botones para cambiar el slide  -->
+        <button class="carousel-button prev">‹</button>
+        <button class="carousel-button next">›</button>
+
+      </div>
+
+    </section>
+
+    <!-- aqui empieza seccion de experiencias  -->
+    <section id="experiencias" class="main__experiencias">
+
+      <h2>experiencias</h2>
+            
+    </section>
+
+
+    <!-- aqui empieza la seccion de servicios o paquetes de internet o costos -->
+    <section id="servicios"  class="main__servicios">
+
+      <h2>Servicios</h2>
+
+      <h3 class="clientes__titulo">Nuestros Clientes</h3>
+        <!-- Aqui inicia el carrusel con los logos de los clientes -->
+        <div class="carousel-wrapper">
+          <div class="carousel-track">
+            <img src="./Assets/Clientes/adidas.png" alt="1" class="carousel-item">
+            <img src="./Assets/Clientes/amazon.png" alt="2" class="carousel-item">
+            <img src="./Assets/Clientes/colgate.png" alt="3" class="carousel-item">
+            <img src="./Assets/Clientes/facebook.png" alt="4" class="carousel-item">
+            <img src="./Assets/Clientes/imss.png" alt="5" class="carousel-item">
+            <img src="./Assets/Clientes/instagram.png" alt="6" class="carousel-item">
+            <img src="./Assets/Clientes/microsoft.png" alt="7" class="carousel-item">
+            <img src="./Assets/Clientes/Samsung.png" alt="8" class="carousel-item">
+            <img src="./Assets/Clientes/whatsapp.png" alt="9" class="carousel-item">
+            <img src="./Assets/Clientes/xbox.png" alt="10" class="carousel-item">
+            
+            <!-- Duplicamos para dar la ilusión de infinito -->
+            <img src="./Assets/Clientes/adidas.png" alt="1" class="carousel-item">
+            <img src="./Assets/Clientes/amazon.png" alt="2" class="carousel-item">
+            <img src="./Assets/Clientes/colgate.png" alt="3" class="carousel-item">
+            <img src="./Assets/Clientes/facebook.png" alt="4" class="carousel-item">
+            <img src="./Assets/Clientes/imss.png" alt="5" class="carousel-item">
+            <img src="./Assets/Clientes/instagram.png" alt="6" class="carousel-item">
+            <img src="./Assets/Clientes/microsoft.png" alt="7" class="carousel-item">
+            <img src="./Assets/Clientes/Samsung.png" alt="8" class="carousel-item">
+            <img src="./Assets/Clientes/whatsapp.png" alt="9" class="carousel-item">
+            <img src="./Assets/Clientes/xbox.png" alt="10" class="carousel-item">
+          </div>
+        </div>
+
+    </section>
+
+
+    <!-- aqui empieza la seccion de cobertura -->
+    <section id="cobertura" class="main__cobertura">
+
+      <h2>cobertura</h2>
+
+    </section>
+
+    <section id="contactanos" class="main__contactanos">
+
+      <div class="contactanos__medios">
+
+        <img class="medios__logo" src="./Assets/Logo sin fondo.png" alt="Logo Connectify">
+        <p class="medios__correo">Correo</p>
+        <p class="medios__correo">Connectify@connectify.com.mx</p>
+        <p class="medios__telefono">Telefono</p>
+        <p class="medios__telefono">55 3344 4433</p>
+
+        <div class="medios__iconos">
+          <a target="_blank" href="https://api.whatsapp.com/qr/S3LHXVGHBQUHL1?autoload=1&app_absent=0"><img class="icono__logos" src="./Assets/logo-whatssapp.png" alt="Logo Whatsapp"></a>
+
+          <a target="_blank" href="https://www.instagram.com/c0nnectify/?igsh=bWI2OGFpaXg0cXNv#"> <img class="icono__logos" src="./Assets/logo-instagram.png" alt="Logo Instagram"></a>
+
+          <a target="_blank" href="https://www.facebook.com"><img class="icono__logos" src="./Assets/facebook.png" alt="Logo Facebook"></a>
+
+        </div>
+
+      </div>
+
+      <div class="contactanos__formulario">
+        <p class="formulario__titulo">Hagamos contacto, envia un correo</p>
+        <form action="" class="formulario">
+            <label class="titulo" for="nombre">Nombre</label><br>
+            <input type="text" id="nombre" name="nombre"><br>
+            <label class="titulo" for="correo">Correo</label><br>
+            <input  type="text" id="correo" name="correo"><br>
+            <label class="titulo" for="asunto">Asunto</label><br>
+            <input type="text" name="asunto" id="asunto"><br>
+            <label class="titulo" for="mensaje">Escriba su mensaje</label><br>
+            <textarea name="mensaje" id="mensaje" rows="30" cols="30">
+
+            </textarea><br>
+            <input type="submit" value="Contactanos">
+
+        </form>
+
+
+      </div>
+
+    </section>
+
+      <!-- aqui empieza la seccion del footer -->
+    <section class="footer">
+      <footer id="footer" class="section">
+        <h2>Footer</h2>
+      </footer>
+    </section>
+
+  </main>
+    
+    <!-- Scripts al final del body para asegurar que el DOM esté cargado -->
+    <script src="Script.js"></script>
+
+</body>
+</html>
