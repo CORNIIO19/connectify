@@ -117,3 +117,88 @@ const observer = new IntersectionObserver((entries) => {
 }, { threshold: 0.6 });
 
 observer.observe(heroSection);
+
+// Ciclo de palabras del título del hero
+const rotatingWords = Array.from(document.querySelectorAll('.hero-title--rotating .rotating-word'));
+let rotatingIndex = 0;
+const rotationDelay = 2600;
+
+function cycleRotatingWords() {
+  if (rotatingWords.length <= 1) return;
+
+  const currentWord = rotatingWords[rotatingIndex];
+  const nextIndex = (rotatingIndex + 1) % rotatingWords.length;
+  const nextWord = rotatingWords[nextIndex];
+
+  currentWord.classList.remove('enter');
+  currentWord.classList.add('leave');
+
+  nextWord.classList.remove('leave');
+  nextWord.classList.add('active', 'enter');
+
+  setTimeout(() => {
+    currentWord.classList.remove('active', 'leave');
+  }, 550);
+
+  rotatingIndex = nextIndex;
+}
+
+if (rotatingWords.length) {
+  rotatingWords[0].classList.add('active', 'enter');
+  if (rotatingWords.length > 1) {
+    setInterval(cycleRotatingWords, rotationDelay);
+  }
+}
+
+// Animaciones on-scroll con animate.css
+const scrollSections = document.querySelectorAll('main section');
+const animateObserver = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) return;
+
+      const targets = Array.from(
+        entry.target.querySelectorAll(
+          '*:not(.hero-title):not(.hero-title--rotating):not(.rotating-word)'
+        )
+      );
+
+      targets.forEach((el, index) => {
+        const style = getComputedStyle(el);
+        const hasBackground =
+          style.backgroundImage !== 'none' ||
+          (style.backgroundColor &&
+            style.backgroundColor !== 'rgba(0, 0, 0, 0)' &&
+            style.backgroundColor.toLowerCase() !== 'transparent');
+
+        const isExperienciasGrid =
+          entry.target.id === 'experiencias' &&
+          ['div1', 'div2', 'div3', 'div4', 'div5', 'div6'].some((cls) =>
+            el.classList.contains(cls)
+          );
+
+        if (hasBackground && !isExperienciasGrid) return; // no animar contenedores que pintan el fondo (excepto grid experiencias)
+
+        if (el.dataset.animating === 'true') return; // evita reinicios mientras corre
+        el.dataset.animating = 'true';
+
+        el.classList.add('animate__animated', 'animate__fadeInUp');
+        el.style.setProperty('--animate-duration', '0.6s');
+        el.style.animationDelay = `${Math.min(index * 60, 360)}ms`;
+
+        const handleAnimationEnd = () => {
+          el.classList.remove('animate__animated', 'animate__fadeInUp');
+          el.style.removeProperty('--animate-duration');
+          el.style.animationDelay = '';
+          el.dataset.animating = '';
+          el.removeEventListener('animationend', handleAnimationEnd);
+        };
+
+        el.addEventListener('animationend', handleAnimationEnd);
+      });
+    });
+  },
+  { threshold: 0.3 }
+);
+
+scrollSections.forEach((section) => animateObserver.observe(section));

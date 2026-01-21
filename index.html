@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Connectify</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     <link rel="stylesheet" href="./Style/Style.css">
     <link rel="icon" type="image/x-icon" href="./Assets/Icono_Pagina.png">
 </head>
@@ -48,10 +49,10 @@
       
       <!-- Links de la pagina en la barra de navegacion  -->
       <nav class="header__nav">
-        <a href="#quienesSomos" class="link-header_identeidad">Nuestra Conexión</a>
-        <a href="#experiencias" class="link-header">Historias Conectadas</a>
-        <a href="#servicios" class="link-header">Soluciones en Red</a>
-        <a href="#cobertura" class="link-header">Hasta Dónde llegamos</a>
+        <a href="#quienesSomos" class="link-header_identeidadSec">Nuestra Conexión</a>
+        <a href="#experiencias" class="link-headerSec">Historias Conectadas</a>
+        <a href="#servicios" class="link-headerSec">Soluciones en Red</a>
+        <a href="#cobertura" class="link-headerSec">Hasta Dónde llegamos</a>
       </nav>
 
       <div class="header__secundario__contacto">
@@ -59,7 +60,7 @@
       </div>
 
       <div class="header__logoContainer">
-        <a href="#hero"><img src="./Assets/Logo sin fondo.png" alt="Logo Connectify header" class="header__logo"></a>
+        <a href="#hero"><img src="./Assets/Logo sin fondo1.png" alt="Logo Connectify header" class="header__logo"></a>
       </div>
   </header>
 
@@ -68,91 +69,139 @@
   <!-- aqui empieza el contenido de la pagina, todo el esqueleto -->
   <main id="main" class="main">
           
-    <section class="hero-banner" id="hero" style="background-image: url('./Assets/Carr1.png');">
-      
-      <!-- Boton de contacto en el hero -->
-      <div class="hero-content__rigth">
-        <a class="rigth__link" href="#contactanos">
-          <img class="content__rigth__boton" src="./Assets/Boton Conecty.png" alt="Boton Contacto">
-        </a>
-      </div>
-      
+    <section class="hero-banner" id="hero">
       <div class="hero-content">
-        <h1 class="hero-title"><span class="hero-title__marca">C</span>onectando</h1> 
-        <h1 class="hero-title">Experiencias</h1>  
-        <p class="hero-subtitle">Diseñamos soluciones de conectividad a la medida de tu evento</p>
+        <h1 class="hero-title">Conectando</h1> 
+        <h1 class="hero-title hero-title--rotating">
+          <span class="rotating-word active">Experiencias</span>
+          <span class="rotating-word">Momentos</span>
+          <span class="rotating-word">Conexiones</span>
+          <span class="rotating-word">Eventos</span>
+        </h1>  
+        <h2 class="hero-subtitle">
+  Diseñamos <span class="accent">soluciones</span> de
+  <span class="accent">conectividad</span>
+</h2>
+<h2 class="hero-subtitle2">
+  a la medida de <span class="accent">tu evento</span>.
+</h2>
       </div>
 
     </section>
 
-    <!-- aqui va el carousel de imagenes con algunos textos, para generar marca -->
     <section id="quienesSomos" class="carousel">
 
-      <div class="carousel__clientes">
-        <div class="carousel__clientes-track-container">
-          <div class="carousel__clientes-track">
+  <div class="carousel__clientes">
+    <div class="carousel__clientes-track-container">
+      <div class="carousel__clientes-track">
 
-            <div class="carrusel__slide1">
-                <div class="slide1__texto">
-                  <p class="slide1__texto__titulo">Hola, Somos Connectify</p>
-                  <p class="slide1__texto__subtitulo">La experienciade un evento sin interrupciones</p>
-                  <p class="slide1__texto__parrafo">Detras de cada solucion hay un equipo de expertos apasionados por conectar personas. Estamos comprometidos a hacer de tu proyecto, nuestro proyecto</p>
-                </div>
-                <div class="slide1__imagen">
-                </div>
+        <!-- SLIDE 1 -->
+        <div class="carrusel__slide1">
+          <div class="slide-inner">
+            <div class="slide1__texto">
+              <p class="slide1__texto__titulo">Hola, somos Connectify</p>
+              <p class="slide1__texto__subtitulo">
+                La experiencia de un evento sin interrupciones
+              </p>
+              <p class="slide1__texto__parrafo">
+                Detrás de cada solución hay un equipo de expertos apasionados
+                por conectar personas. Estamos comprometidos a hacer de tu
+                proyecto, nuestro proyecto.
+              </p>
             </div>
-
-            <div class="carrusel__slide2">
-              <div class="slide2__texto">
-                  <p class="slide2__texto__parrafo">Porque cada gran momento merece una conexion perfecta.</p>
-                  <p class="slide2__texto__parrafo2">En Connectify, eliminamos las preocupaciones tecnicas para que tus invitados se centren solo en vivir la experiencia</p>
-                  <!-- <p>Detras de cada solucion hay </p> -->
-                </div>
-                <div class="slide2__imagen">
-                </div>
-            </div>
-
-            <div class="carrusel__slide3">
-              <div class="slide3__texto">
-                <p class="slide3__texto__titulo">Soluciones de red disenadas a la medida de tu evento</p>
-                <p class="slide3__texto__parrafo">Analizamos cada detalle de tu evento disenamos una red a la medida y la implementamos con soporte continuo, garantizando una conectividad tan solida como tu vision</p>
-              </div>
-              <div class="slide3__imagen">
-                <img src="./Assets/Slides_Images/imagen_Slide1.png" class="imagen">
-              </div>
-            </div>
-
-            <div class="carrusel__slide4">
-              <div class="slide4__texto">
-                <p class="slide4__texto__titulo">Estamos listos</p>
-                <p class="slide4__texto__parrafo">Hablemos de tus necesidades y juntos transformaremos tu proximo evento en un exito rotundo</p>
-              </div>
-              <div class="slide4__imagen">
-              </div>
+            <div class="slide1__imagen">
+               <img src="Assets/Slide1.jpg" alt="Equipo técnico Connectify">
             </div>
           </div>
-          <!-- Botones para cambiar el slide  -->
-        <button class="carousel-button prev">‹</button>
-        <button class="carousel-button next">›</button>
+        </div>
+
+        <!-- SLIDE 2 -->
+        <div class="carrusel__slide2">
+          <div class="slide2-inner">
+            <div class="slide2__texto">
+              <p class="slide2__texto__parrafo">
+                Porque cada gran momento merece una <span class="accent">conexión perfecta</span>
+              </p>
+              <p class="slide2__texto__parrafo2">
+                En Connectify, eliminamos las preocupaciones técnicas para que
+                tus invitados se centren solo en vivir la experiencia.
+              </p>
+            </div>
+            <div class="slide2__imagen"></div>
+          </div>
+        </div>
+
+        <!-- SLIDE 3 -->
+        <div class="carrusel__slide3">
+          <div class="slide-inner">
+            <div class="slide3__imagen">
+              <img src="./Assets/Slides_Images/imagen_Slide1.png" class="imagen">
+            </div>
+            <div class="slide3__texto">
+              <p class="slide3__texto__titulo">
+                Soluciones de red diseñadas <span class="accent">a la medida</span> de tu evento
+              </p>
+              <p class="slide3__texto__parrafo">
+                Analizamos cada detalle de tu evento, diseñamos una red personalizada y la implementamos con soporte continuo para que todo funcione sin interrupciones.
+              </p>
+            </div>
+            
+          </div>
+        </div>
+
+        <!-- SLIDE 4 -->
+        <div class="carrusel__slide4">
+          <div class="slide-inner">
+            <div class="slide4__texto">
+              <p class="slide4__texto__titulo">Estamos listos</p>
+              <p class="slide4__texto__parrafo">
+                Hablemos de tus necesidades y juntos transformaremos tu próximo
+                evento en un éxito rotundo.
+              </p>
+            </div>
+          </div>
+        </div>
 
       </div>
 
-    </section>
+      <!-- Botones -->
+      <button class="carousel-button prev">‹</button>
+      <button class="carousel-button next">›</button>
+
+    </div>
+  </div>
+</section>
 
     <!-- aqui empieza seccion de experiencias  -->
     <section id="experiencias" class="main__experiencias">
-
-      <h2>experiencias</h2>
-            
+      <div class="parent">
+        <div class="div1"> </div>
+        <div class="div2"> </div>
+        <div class="div3"> </div>
+        <div class="div4"> </div>
+        <div class="div5"> </div>
+        <div class="div6"> </div>
+      </div>         
     </section>
+
+
 
 
     <!-- aqui empieza la seccion de servicios o paquetes de internet o costos -->
     <section id="servicios"  class="main__servicios">
 
-      <h2>Servicios</h2>
+      <h2>Soluciones de conectividad para eventos</h2>
+      <p>Servicios profesionales para eventos corporativos, streaming y experiencias en vivo.</p>
+      <div class="servicios">
+      
+        <div class="servicio_1"></div>
+        <div class="servicio_2"></div>
+        <div class="servicio_3"></div>
 
-      <h3 class="clientes__titulo">Nuestros Clientes</h3>
+      </div>
+
+      <div class="clientes">
+      <h3 class="clientes__titulo">Clientes que han confiado en Connectify</h3>
         <!-- Aqui inicia el carrusel con los logos de los clientes -->
         <div class="carousel-wrapper">
           <div class="carousel-track">
@@ -180,6 +229,7 @@
             <img src="./Assets/Clientes/xbox.png" alt="10" class="carousel-item">
           </div>
         </div>
+      </div>
 
     </section>
 

@@ -66,3 +66,25 @@ COMO LO HACEMOS
 NUEESTRO OBJETIVO
 
 reaizar acomodo de los contenedores del carrusel
+
+
+<!-- /* CSS HEX */
+--supernova: #fecb06;
+--buttered-rum: #9a7d08;
+--acadia: #121203;
+--sahara: #ae8f0e;
+--cod-gray: #0a090a;
+
+/* SCSS HEX */
+$supernova: #fecb06;
+$buttered-rum: #9a7d08;
+$acadia: #121203;
+$sahara: #ae8f0e;
+$cod-gray: #0a090a;
+
+/* SCSS RGB */
+$supernova: rgba(254,203,6,1);
+$buttered-rum: rgba(154,125,8,1);
+$acadia: rgba(18,18,3,1);
+$sahara: rgba(174,143,14,1);
+$cod-gray: rgba(10,9,10,1); -->
