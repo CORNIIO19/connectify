@@ -52,19 +52,115 @@ container.addEventListener('scroll', () => {
 
   //----------- logica del carrusel ---------------------------------- 
 
-    const track = document.querySelector('.carousel__clientes-track');
+  const track = document.querySelector('.carousel__clientes-track');
   const slides = Array.from(track.children);
   const nextButton = document.querySelector('.carousel-button.next');
   const prevButton = document.querySelector('.carousel-button.prev');
+  const carouselSection = document.getElementById('quienesSomos');
+  const heroSectionRef = document.getElementById('hero');
+  const experienciasSection = document.getElementById('experiencias');
+  const mainContainer = document.querySelector('.main');
+  
   let currentIndex = 0;
+  let isScrollingCarousel = false;
+  let carouselScrollPosition = 0;
+  const lastSlideIndex = slides.length - 1;
+
+  function animateSlideElements(slideIndex) {
+    const slide = slides[slideIndex];
+    if (!slide) return;
+
+    const targets = Array.from(
+      slide.querySelectorAll('*:not(.slide-inner):not(.slide2-inner):not(.slide3-inner):not(.slide4-inner)')
+    );
+
+    targets.forEach((el, index) => {
+      const style = getComputedStyle(el);
+      const hasBackground =
+        style.backgroundImage !== 'none' ||
+        (style.backgroundColor &&
+          style.backgroundColor !== 'rgba(0, 0, 0, 0)' &&
+          style.backgroundColor.toLowerCase() !== 'transparent');
+
+      if (hasBackground && el.classList.contains('slide-inner')) return;
+      if (hasBackground && el.classList.contains('slide2-inner')) return;
+      if (hasBackground && el.classList.contains('slide3-inner')) return;
+      if (hasBackground && el.classList.contains('slide4-inner')) return;
+
+      el.classList.remove('animate__animated', 'animate__fadeInUp');
+      el.style.removeProperty('--animate-duration');
+      el.style.animationDelay = '';
+
+      void el.offsetWidth;
+
+      el.classList.add('animate__animated', 'animate__fadeInUp');
+      el.style.setProperty('--animate-duration', '0.6s');
+      el.style.animationDelay = `${Math.min(index * 60, 360)}ms`;
+    });
+  }
 
   function updateCarousel() {
     const slideWidth = slides[0].getBoundingClientRect().width;
     track.style.transform = 'translateX(-' + slideWidth * currentIndex + 'px)';
+    animateSlideElements(currentIndex);
   }
 
+  function isCarouselInView() {
+    const rect = carouselSection.getBoundingClientRect();
+    return rect.top <= 100 && rect.bottom >= window.innerHeight - 100;
+  }
+
+  // Bloquear scroll vertical cuando estamos en el carrusel
+  mainContainer.addEventListener('scroll', (e) => {
+    if (isScrollingCarousel && isCarouselInView()) {
+      // Mantener el scroll en la posición del carrusel
+      mainContainer.scrollTop = carouselScrollPosition;
+    } else if (isCarouselInView()) {
+      // Guardar la posición del scroll cuando estamos en el carrusel
+      carouselScrollPosition = mainContainer.scrollTop;
+    }
+  });
+
+  // Control del wheel para navegar los slides
+  mainContainer.addEventListener('wheel', (e) => {
+    const inCarousel = isCarouselInView();
+    
+    if (!inCarousel) return;
+
+    e.preventDefault();
+
+    if (isScrollingCarousel) return;
+
+    const delta = e.deltaY;
+    isScrollingCarousel = true;
+
+    if (delta > 0) {
+      // Scroll hacia abajo
+      if (currentIndex < lastSlideIndex) {
+        currentIndex++;
+        updateCarousel();
+        setTimeout(() => { isScrollingCarousel = false; }, 500);
+      } else if (currentIndex === lastSlideIndex) {
+        // Último slide: permite pasar a experiencias
+        isScrollingCarousel = false;
+        experienciasSection?.scrollIntoView({ behavior: 'smooth' });
+      }
+    } else if (delta < 0) {
+      // Scroll hacia arriba
+      if (currentIndex > 0) {
+        currentIndex--;
+        updateCarousel();
+        setTimeout(() => { isScrollingCarousel = false; }, 500);
+      } else if (currentIndex === 0) {
+        // Primer slide: permite pasar al hero
+        isScrollingCarousel = false;
+        heroSectionRef?.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  }, { passive: false });
+
   nextButton.addEventListener('click', () => {
-    if (currentIndex < slides.length - 1) {
+    if (currentIndex < lastSlideIndex) {
       currentIndex++;
       updateCarousel();
     }
@@ -77,7 +173,10 @@ container.addEventListener('scroll', () => {
     }
   });
 
-  // window.addEventListener('resize', updateCarousel); // Para adaptarse si cambia el tamaño
+  if (slides.length > 0) {
+    animateSlideElements(0);
+  }
+
   //--------- Fin del carrusel ----------------------------------------
 
 // En este bloque de codigo se hace el scroll sueve en la navegacion del header 

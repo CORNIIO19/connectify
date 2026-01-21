@@ -598,9 +598,33 @@ background:#EDEFF2 50%;
 
   display: flex;
   flex-direction: column;
+  position: relative;
 
   background-color: #000000;
   border-radius: 2rem;
+
+  background-image: url('../Assets/Mask\ group.svg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.slide2-inner::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  background: linear-gradient(
+    160deg,
+    rgba(0, 0, 0, 0.8) 0%,
+    rgba(0, 0, 0, 0.3) 80%,
+    rgba(0, 0, 0, 0) 300%
+  );
+  border-radius: 2rem;
+  pointer-events: none;
+  z-index: 1;
 }
 
 
@@ -608,6 +632,8 @@ background:#EDEFF2 50%;
   Width: 100%;
   display: flex;
   flex-direction: column;
+  position: relative;
+  z-index: 2;
 }
 
 .slide2__texto__parrafo{
@@ -630,6 +656,9 @@ background:#EDEFF2 50%;
   padding-right: 50%;  
 }
 
+.slide2__imagen{
+}
+
 /* .carrusel__slide3 {
   width: calc(100% - 4%);
   height: 88vh;
@@ -643,39 +672,41 @@ background:#EDEFF2 50%;
 
 
 .slide3__texto{
-  width: 50%;
+  width: 40%;
   display: flex;
   flex-direction: column;
-  margin-left: 2%;
+  margin-left: 5%;
   margin-top: 10%;
+  align-items: center;
 }
 
 .slide3__texto__titulo{
   font-family: 'Montserrat', sans-serif;
-  font-size: 3.3rem;
+  font-size: 3rem;
   font-weight: 700;
   color: #ffffff;
-  padding-right: 20%;
+  padding-right: 10%;
 }
 
 .slide3__texto__parrafo{
   font-family: 'Montserrat', sans-serif;
-  font-size: 2rem;
+  font-size: 1.8rem;
   font-weight: 400;
   color: #ffffff;
   margin-top: 5%;
-  padding-right: 20%;
+  padding-right: 25%;
 }
 
 
 .slide3__imagen{
   display: flex;
   align-items: center;
-  width: 50%;
+  width: 60%;
+  justify-content: center;
 }
 
 .imagen{
-  width:120%;
+  width:90%;
 }
 
 /* .carrusel__slide4{
@@ -717,6 +748,41 @@ background:#EDEFF2 50%;
   flex-shrink: 0;
   display: flex;
 }
+
+.slide4-inner {
+  width: 100%;
+  height: 100%;
+
+  margin: 0 5%;  
+  
+  /* ← espacio lateral seguro */
+  padding: 2rem;             /* espacio interno */
+  box-sizing: border-box;
+
+  display: flex;
+  flex-direction: row;
+
+  position: relative;
+  overflow: hidden;
+
+  background-color: #000000;
+  border-radius: 2rem;
+}
+
+.slide4-inner::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url('../Assets/Maskgroup2.svg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.35;
+  pointer-events: none;
+  border-radius: 2rem;
+  z-index: 0;
+}
+
 
 .slide4__texto{
   width: 100%;
