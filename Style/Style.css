@@ -326,7 +326,7 @@ color: #f1f1f1;
   display: flex;
   font-size: 6rem;
   font-weight: bold;
-  margin-bottom: 1rem;
+  margin-bottom: .5rem;
   line-height: .8;
   font-family:  "Montserrat", sans-serif;
   /* margin-right: 40%; */
@@ -335,7 +335,7 @@ color: #f1f1f1;
 
 .hero-subtitle {
   text-align: center;
-  padding-top: 4%;
+  padding-top: 1%;
   font-size: 2rem;
   font-weight: 400;
   font-family: "Poppins", serif;
@@ -1029,7 +1029,8 @@ padding-bottom: 25px;
 .main__servicios{
     display: flex;
     flex-direction: column;
-    background-color: #8c8c8c;
+    background:#EDEFF2 50%;
+
     width: 100%;
     height: 100%;
     padding-top: 100px;
@@ -1278,37 +1279,277 @@ padding-bottom: 25px;
 
 
 /* aqui empieza los estilos para hacer la pagina responsiva sin usar cosas raras */
-@media (max-width: 1200px) {
+@media (max-width: 1023px) {
+  /* ===== HEADER ===== */
+  .header {
+    padding: 12px 20px;
+    height: 80px;
+  }
 
-    .header{
-        padding: 10%;
+  .header__secundario {
+    padding: 12px 20px;
+    height: 80px;
+  }
+
+  .header__logo {
+    max-width: 200px;
+  }
+
+  .header__nav {
+    gap: 30px;
+  }
+
+  .link-header,
+  .link-header_identeidad,
+  .link-headerSec,
+  .link-header_secundario,
+  .link-header_identeidadSec {
+    font-size: 0.95rem;
+  }
+
+  .header__redesSociales {
+    gap: 25px;
+  }
+
+  .header__redesSociales__logo {
+    height: 40px;
+  }
+
+  .header__secundario__contacto {
+    width: 15%;
+    margin-left: 3%;
+  }
+
+  /* ===== HERO ===== */
+  .hero-title {
+    font-size: 3.5rem;
+    margin-left: 4%;
+  }
+
+  .hero-title--rotating {
+    min-width: 400px;
+  }
+
+  .hero-subtitle,
+  .hero-subtitle2 {
+    font-size: 1.3rem;
+    margin-left: 4%;
+  }
+
+  /* ===== CAROUSEL ===== */
+  .carousel {
+    padding-top: 80px;
+  }
+
+  .carrusel__slide1,
+  .carrusel__slide2,
+  .carrusel__slide3,
+  .carrusel__slide4 {
+    width: 100%;
+    height: 85vh;
+    flex-shrink: 0;
+    display: flex;
+  }
+
+  .slide-inner,
+  .slide2-inner,
+  .slide4-inner {
+    margin: 0 3%;
+    padding: 1.5rem;
+  }
+
+  .slide1__texto {
+    width: 55%;
+  }
+
+  .slide1__texto__titulo {
+    font-size: 1.5rem;
+    margin-left: 8%;
+    margin-bottom: 2%;
+  }
+
+  .slide1__texto__subtitulo {
+    font-size: 2.5rem;
+    margin-left: 3%;
+    padding-left: 4%;
+    padding-bottom: 4%;
+  }
+
+  .slide1__texto__parrafo {
+    font-size: 1.2rem;
+    margin-left: 3%;
+    padding-left: 4%;
+    padding-right: 5%;
+  }
+
+  .slide1__imagen {
+    width: 45%;
+    height: 70vh;
+  }
+
+  .slide2__texto__parrafo {
+    font-size: 2.5rem;
+    margin-left: 5%;
+    padding-right: 10%;
+  }
+
+  .slide2__texto__parrafo2 {
+    font-size: 1.3rem;
+    margin-left: 5%;
+    padding-right: 20%;
+  }
+
+  .slide3__texto {
+    width: 45%;
+    margin-left: 3%;
+    margin-top: 5%;
+  }
+
+  .slide3__texto__titulo {
+    font-size: 2rem;
+  }
+
+  .slide3__texto__parrafo {
+    font-size: 1.2rem;
+  }
+
+  .slide3__imagen {
+    width: 55%;
+  }
+
+  .slide4__texto__titulo {
+    font-size: 3rem;
+  }
+
+  .slide4__texto__parrafo {
+    font-size: 1.8rem;
+    padding: 0% 10%;
+  }
+
+  .carousel-button {
+    font-size: 1.5rem;
+  }
+
+  /* ===== EXPERIENCIAS GRID ===== */
+  .parent {
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: auto;
+    padding-top: 80px;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-bottom: 20px;
+    gap: 20px;
+  }
+
+  .div1,
+  .div2,
+  .div3,
+  .div4,
+  .div5,
+  .div6 {
+    grid-area: auto !important;
+    min-height: 200px;
+    margin: 0 !important;
+  }
+
+  .div1::after,
+  .div2::after,
+  .div3::after,
+  .div4::after,
+  .div5::after,
+  .div6::after {
+    font-size: 1.5rem;
+  }
+
+  /* ===== SERVICIOS ===== */
+  .main__servicios {
+    padding-top: 80px;
+  }
+
+  .main__servicios h2 {
+    font-size: 2rem;
+  }
+
+  .main__servicios p {
+    font-size: 1.2rem;
+  }
+
+  .servicios {
+    flex-direction: column;
+    padding: 3% 4%;
+    gap: 20px;
+  }
+
+  .servicio_1,
+  .servicio_2,
+  .servicio_3 {
+    width: 100%;
+    min-height: 300px;
+  }
+
+  .clientes__titulo {
+    font-size: 1.3rem;
+  }
+
+  .clientes__titulo::after {
+    width: 300px;
+  }
+
+  .carousel-item {
+    width: 80px;
+    margin: 0 40px;
+  }
+
+  @keyframes scroll {
+    0% {
+      transform: translateX(0);
     }
-    
-    .header__menu{
-        justify-content: center;
-        gap: 20%;
-        
+    100% {
+      transform: translateX(-1500px);
     }
+  }
 
-    .header__menu__link{
-        font-size: 0.85rem;
-    }
+  /* ===== COBERTURA ===== */
+  .main__cobertura {
+    padding: 8%;
+  }
 
+  /* ===== CONTACTO ===== */
+  .main__contactanos {
+    flex-direction: column;
+  }
 
-    .presentacion{
-        flex-direction: column-reverse;
-        padding: 5%;
-    }
+  .contactanos__medios,
+  .contactanos__formulario {
+    width: 100%;
+  }
 
-    .presentacion__contenido{
-        width: auto;
-    }
+  .medios__correo,
+  .medios__telefono {
+    font-size: 1.2rem;
+  }
 
+  .medios__iconos {
+    width: 50%;
+    gap: 25px;
+  }
 
+  .formulario__titulo {
+    font-size: 1.5rem;
+    padding-top: 5%;
+  }
+
+  .titulo {
+    font-size: 1.1rem;
+  }
+
+  .formulario input,
+  .formulario textarea {
+    width: 90%;
+    margin-left: 5%;
+  }
 }
 
-
-/* Márgenes y ancho optimizados para móviles en los slides del carrusel */
 @media (max-width: 768px) {
   .carrusel__slide1,
   .carrusel__slide2,
