@@ -199,6 +199,11 @@ const headerHero = document.getElementById("header");
 const headerGeneral= document.getElementById("header__secundario");
 const heroSection = document.getElementById("hero");
 
+// Mostrar el header de hero al cargar la página
+if (headerHero) {
+  headerHero.classList.remove("hidden");
+}
+
 const observer = new IntersectionObserver((entries) => {
   entries.forEach((entry) => {
     if (entry.target.id === "hero") {
@@ -301,3 +306,44 @@ const animateObserver = new IntersectionObserver(
 );
 
 scrollSections.forEach((section) => animateObserver.observe(section));
+
+// --------- Highlight Active Section in Header ---------
+const headerLinks = document.querySelectorAll('[data-section]');
+const sections = {
+  quienesSomos: document.getElementById('quienesSomos'),
+  experiencias: document.getElementById('experiencias'),
+  servicios: document.getElementById('servicios'),
+  cobertura: document.getElementById('cobertura')
+};
+
+function highlightActiveLink() {
+  let currentSection = null;
+  let maxVisibility = 0;
+
+  // Detectar cuál sección está más visible
+  for (const [sectionName, sectionEl] of Object.entries(sections)) {
+    if (!sectionEl) continue;
+    
+    const rect = sectionEl.getBoundingClientRect();
+    const visible = Math.max(0, Math.min(rect.bottom, window.innerHeight) - Math.max(rect.top, 0));
+    
+    if (visible > maxVisibility) {
+      maxVisibility = visible;
+      currentSection = sectionName;
+    }
+  }
+
+  // Actualizar estilos de los links
+  headerLinks.forEach(link => {
+    if (link.getAttribute('data-section') === currentSection) {
+      link.classList.add('active-section');
+    } else {
+      link.classList.remove('active-section');
+    }
+  });
+}
+
+// Ejecutar al hacer scroll
+mainContainer.addEventListener('scroll', highlightActiveLink);
+window.addEventListener('load', highlightActiveLink);
+// --------- Fin Highlight Active Section ---------
