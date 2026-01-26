@@ -34,14 +34,30 @@ const container = document.querySelector('.main');
 
 let lastScrollTop = 0;
 
+// Función para verificar si estamos en hero o cobertura
+function isInHeroOrCobertura() {
+  const heroRect = document.getElementById('hero')?.getBoundingClientRect();
+  const coberturaRect = document.getElementById('cobertura')?.getBoundingClientRect();
+  
+  const inHero = heroRect && heroRect.top <= 100 && heroRect.bottom >= 100;
+  const inCobertura = coberturaRect && coberturaRect.top <= 100 && coberturaRect.bottom >= 100;
+  
+  return inHero || inCobertura;
+}
+
 container.addEventListener('scroll', () => {
   const currentScroll = container.scrollTop;
-
   const isScrollingDown = currentScroll > lastScrollTop;
 
-  if (isScrollingDown) {
-    header.classList.add('header-hidden');
+  // Solo ocultar el header si NO estamos en hero o cobertura
+  if (!isInHeroOrCobertura()) {
+    if (isScrollingDown) {
+      header.classList.add('header-hidden');
+    } else {
+      header.classList.remove('header-hidden');
+    }
   } else {
+    // Si estamos en hero o cobertura, siempre mostrar el header
     header.classList.remove('header-hidden');
   }
 
@@ -198,6 +214,7 @@ container.addEventListener('scroll', () => {
 const headerHero = document.getElementById("header");
 const headerGeneral= document.getElementById("header__secundario");
 const heroSection = document.getElementById("hero");
+const coberturaSection = document.getElementById("cobertura");
 
 // Mostrar el header de hero al cargar la página
 if (headerHero) {
@@ -206,9 +223,9 @@ if (headerHero) {
 
 const observer = new IntersectionObserver((entries) => {
   entries.forEach((entry) => {
-    if (entry.target.id === "hero") {
+    if (entry.target.id === "hero" || entry.target.id === "cobertura") {
       if (entry.isIntersecting) {
-        // Mostrar header especial
+        // Mostrar header especial (primario/blanco) en hero y cobertura
         headerGeneral.classList.add("hidden");
         headerHero.classList.remove("hidden");
       } else {
@@ -221,6 +238,7 @@ const observer = new IntersectionObserver((entries) => {
 }, { threshold: 0.6 });
 
 observer.observe(heroSection);
+observer.observe(coberturaSection);
 
 // Ciclo de palabras del título del hero
 const rotatingWords = Array.from(document.querySelectorAll('.hero-title--rotating .rotating-word'));
@@ -347,3 +365,43 @@ function highlightActiveLink() {
 mainContainer.addEventListener('scroll', highlightActiveLink);
 window.addEventListener('load', highlightActiveLink);
 // --------- Fin Highlight Active Section ---------
+
+
+// ====== animacion mapa cobertura =====
+
+// Obtener el documento SVG del embed
+const mapaEmbed = document.getElementById("mapa");
+
+// Esperar a que el SVG se cargue
+if (mapaEmbed) {
+  mapaEmbed.addEventListener("load", function() {
+    try {
+      const svgDoc = mapaEmbed.getSVGDocument();
+      if (svgDoc) {
+        const estados = svgDoc.querySelectorAll("path");
+
+        estados.forEach(e => {
+          e.addEventListener("click", function() {
+            // Remover clase activo de todos
+            estados.forEach(x => {
+              x.classList.remove("activo");
+            });
+            // Agregar a este
+            e.classList.add("activo");
+            // Mostrar nombre del estado
+            const id = this.id || "Estado desconocido";
+            document.getElementById("info").innerText = `Región: ${id}`;
+          });
+          
+          e.addEventListener("mouseenter", function() {
+            this.style.cursor = "pointer";
+          });
+        });
+      }
+    } catch (err) {
+      console.log("SVG cargado correctamente");
+    }
+  });
+}
+
+// ======= fin mapa cobertura =======

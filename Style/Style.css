@@ -1062,6 +1062,7 @@ background:#EDEFF2 50%;
   border: 5px solid #020204;
   font-family: 'Montserrat', sans-serif;
   margin: 0 35% 0 35%;
+  text-decoration: none;
 }
 
 
@@ -1114,31 +1115,151 @@ background:#EDEFF2 50%;
   margin-bottom: 1% ;
 }
 
-.servicio_1{
-  width:25%;
-  height: auto;
-  min-width: 260px;
-  min-height: 500px;
-  background-color: #656363;
-  border-radius: 1rem;
-}
-
-.servicio_2{
+.servicio_1,
+.servicio_2,
+.servicio_3 {
   width: 25%;
-  height: auto;
+  height: 500px;
   min-width: 260px;
-  min-height: 500px;
-  background-color: #656363;
-  border-radius: 1rem;
+  position: relative;
+  margin: 10px;
+  border-radius: 10px 10px 10px 10px;
 }
 
-.servicio_3{
-  width:25%;
-  height: auto;
-  min-width: 250px;
-  min-height: 500px;
-  background-color: #656363;
-  border-radius: 1rem;
+/* Imágenes de servicios
+.servicio-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+} */
+
+/* Título en el front */
+.servicio-front h2 {
+  position: absolute;
+  bottom: 0px;
+  left: 0;
+  right: 0;
+  padding: 130px;
+  margin: 0;
+  color: #fecb06;
+  font-family: "Poppins", sans-serif;
+  font-size: 2rem;
+  font-weight: 700;
+  text-align: center;
+  background: linear-gradient(to top, rgba(235, 235, 235, 0.763), transparent);
+  border-radius: 0 0 10px 10px;
+}
+
+/* Título y texto en el back */
+.servicio-back h2 {
+  position: absolute;
+  top: 20px;
+  left: 0;
+  right: 0;
+  padding: 0 20px;
+  margin: 0;
+  color: #fecb06;
+  font-family: "Poppins", sans-serif;
+  font-size: 1.8rem;
+  font-weight: 700;
+  text-align: center;
+}
+
+.servicio-back p {
+  position: absolute;
+  top: 90px;
+  left: 0;
+  right: 0;
+  padding: 0 25px;
+  margin: 0;
+  color: #ffffff;
+  font-family: "Poppins", sans-serif;
+  font-size: 1rem;
+  line-height: 1.6;
+  text-align: justify;
+}
+
+.servicio-back__cta {
+  position: absolute;
+  top: 300px;
+  left: 0;
+  right: 0;
+  padding: 0 25px;
+  margin: 0;
+  color: #ffffff;
+  font-family: "Poppins", sans-serif;
+  font-size: 1rem;
+  line-height: 1.6;
+
+  color: #fecb06;
+
+  padding: 7px 15px;
+  border-radius: 999px;
+  margin: 2.5% 10%;
+  text-decoration: none;
+  text-align: center;
+
+  font-size: 2rem;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  font-family: "Poppins", sans-serif;
+
+  border: 1.5px solid #fecb06;
+
+  transition: all .3s ease;
+}
+
+.servicio-back__cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 40px rgba(254,203,6,.35);
+}
+
+/* Parte frontal de la tarjeta */
+.servicio_1 > .servicio-front,
+.servicio_2 > .servicio-front,
+.servicio_3 > .servicio-front {
+  position: absolute;
+  transform: perspective(600px) rotateY(0deg);
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  transition: transform 0.6s ease-in-out;
+  border-radius: 10px;
+  background-color: #2d2d2d;
+
+  /* display: flex;
+  justify-content: center;
+  align-items: center; */
+}
+
+/* Parte trasera de la tarjeta */
+.servicio_1 > .servicio-back,
+.servicio_2 > .servicio-back,
+.servicio_3 > .servicio-back {
+  position: absolute;
+  transform: perspective(600px) rotateY(180deg);
+  background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  backface-visibility: hidden;
+  transition: transform 0.6s ease-in-out;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+}
+
+/* Hover effect - girar al frente */
+.servicio_1:hover > .servicio-front,
+.servicio_2:hover > .servicio-front,
+.servicio_3:hover > .servicio-front {
+  transform: perspective(600px) rotateY(-180deg);
+}
+
+/* Hover effect - girar al back */
+.servicio_1:hover > .servicio-back,
+.servicio_2:hover > .servicio-back,
+.servicio_3:hover > .servicio-back {
+  transform: perspective(600px) rotateY(0deg);
 }
 
 .clientes{
@@ -1226,16 +1347,100 @@ background:#EDEFF2 50%;
 /* -------------ajustar esta parte---------------- */
 
 .main__cobertura{
-  background-color: #ffffff;
-  padding: 15%;
   border-radius: 10px;
+  background:#000000;
+  color:white;
+  padding-top: 110px;
+  margin-top: 110px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap:2%;
+  font-size: 1.5rem;
+  font-family: "Montserrat", sans-serif;
+
 }
 
-.main__cobertura h2 {
-  color: white;
-  text-shadow: 2px 2px 4px rgba(255, 255, 255, 0);
-  font-family:  "Poppins", sans-serif;
+/* ==== comienza cobertura MAPA ===== */
+.container {
+  width: 70%;
+  margin: auto;
 }
+
+.map-container {
+  /* width: 50%; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #625e5e69;
+  border-radius: 10px;
+  padding: 1rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin-left: 15%;
+  margin-right: 15%;
+}
+
+.map-container :hover{
+  fill: #000000;
+  
+}
+
+.cobertura__eventos{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 50%;
+  background: #0e1117;
+  margin-bottom: 2%;
+}
+
+.eventos{
+  width: 20%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  /* padding: 0 20px 0 20px; */
+  margin-right: 3%;
+  border-radius: 10px;
+  border: 2px solid #fecb06;
+}
+
+.lugares{
+  width: 20%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  /* padding: 0 20px 0 20px;  */
+  margin-left: 3%;
+  border-radius: 10px;
+  border: 2px solid #fecb06;
+}
+
+.letras{
+  font-family: "Montserrat", sans-serif;
+  color: #ffffff;
+  font-size: 2rem;
+  text-align: center;
+  /* padding: 3%; */
+  padding-left: 5%;
+  font-weight: 700;
+}
+
+.num{  
+  font-family: "Montserrat", sans-serif;
+  color: #fecb06;
+  font-size: 4rem;
+  font-weight: 700;
+  
+}
+
+/* ======= termina cobertura mapa de mexico======== */
 
 .main__contactanos{
   display: flex;
