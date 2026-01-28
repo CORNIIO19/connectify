@@ -296,3 +296,10 @@ El archivo CSS presenta una **estructura sólida y funcional** con un **85% de c
 El sistema de carousel y la navegación están **correctamente implementados** y son **esenciales para la funcionalidad** de la página. Las clases de contenido siguen una **metodología BEM consistente** que facilita el mantenimiento del código.
 
 **Puntuación General: 8.5/10** - Código bien estructurado con oportunidades menores de optimización.
+
+mexico3
+mexico15
+mexico21
+mexico27
+mexico33
+mexico57

@@ -405,3 +405,68 @@ if (mapaEmbed) {
 }
 
 // ======= fin mapa cobertura =======
+
+// Marcadores en el SVG inline del mapa de cobertura
+document.addEventListener('DOMContentLoaded', () => {
+  const svg = document.querySelector('#map-container svg');
+  if (!svg) return;
+
+  const targetIds = ['mexico3', 'mexico57', 'mexico15', 'mexico21', 'mexico27', 'mexico33'];
+  const infoBox = document.getElementById('info');
+
+  const markerById = {};
+
+  targetIds.forEach((id) => {
+    const target = svg.querySelector(`#${CSS.escape(id)}`);
+    if (!target) return;
+
+    const { x, y, width, height } = target.getBBox();
+    const cx = x + width / 2;
+    const cy = y + height / 2;
+
+    // Wrapper para conservar la posición aun con transform en hover
+    const wrapper = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+    wrapper.setAttribute('transform', `translate(${cx}, ${cy})`);
+
+    const marker = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+    marker.setAttribute('class', 'map-marker');
+    marker.setAttribute('data-target', id);
+
+    const body = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+    body.setAttribute('class', 'map-marker-body');
+    body.setAttribute('d', 'M0 0 C5 0 8 -4 8 -9 C8 -13.4183 4.4183 -17 0 -17 C-4.4183 -17 -8 -13.4183 -8 -9 C-8 -4 -5 0 0 0 Z');
+
+    const dot = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+    dot.setAttribute('class', 'map-marker-dot');
+    dot.setAttribute('r', '3');
+    dot.setAttribute('cx', '0');
+    dot.setAttribute('cy', '-11');
+
+    marker.appendChild(body);
+    marker.appendChild(dot);
+    wrapper.appendChild(marker);
+
+    markerById[id] = wrapper;
+
+    marker.addEventListener('click', () => {
+      if (infoBox) {
+        infoBox.innerText = `Región: ${id}`;
+      }
+    });
+
+    marker.addEventListener('mouseenter', () => target.classList.add('activo'));
+    marker.addEventListener('mouseleave', () => target.classList.remove('activo'));
+
+    svg.appendChild(wrapper);
+  });
+
+  // Levantar marcador cuando se hace hover sobre el path
+  targetIds.forEach((id) => {
+    const target = svg.querySelector(`#${CSS.escape(id)}`);
+    const marker = markerById[id];
+    if (!target || !marker) return;
+
+    target.addEventListener('mouseenter', () => marker.classList.add('map-marker-lift'));
+    target.addEventListener('mouseleave', () => marker.classList.remove('map-marker-lift'));
+  });
+});
