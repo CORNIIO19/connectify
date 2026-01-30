@@ -35,6 +35,7 @@ const container = document.querySelector('.main');
 
 let lastScrollTop = 0;
 let isInFooter = false;
+let isInitialLoad = true;
 
 // Usar IntersectionObserver para detectar el footer de forma confiable
 const footerElement = document.getElementById('footer');
@@ -42,11 +43,6 @@ if (footerElement) {
   const footerObserver = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
       isInFooter = entry.isIntersecting;
-      // Ocultar ambos headers inmediatamente cuando entramos al footer
-      if (isInFooter) {
-        if (header) header.classList.add('header-hidden');
-        if (headerSecundario) headerSecundario.classList.add('header-hidden');
-      }
     });
   }, { threshold: 0.1 });
   
@@ -66,26 +62,83 @@ function isInHeroOrCobertura() {
   return inHero || inCobertura;
 }
 
+// Control del header primario vs secundario
+const heroSection = document.getElementById("hero");
+const coberturaSection = document.getElementById("cobertura");
+
+const headerObserver = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    if (entry.target.id === "hero" || entry.target.id === "cobertura") {
+      if (entry.isIntersecting) {
+        // Estamos en hero o cobertura: mostrar header primario
+        if (headerSecundario) headerSecundario.classList.add("hidden");
+        if (header) header.classList.remove("hidden");
+      } else {
+        // Salimos de hero/cobertura: mostrar header secundario
+        if (header) header.classList.add("hidden");
+        if (headerSecundario) headerSecundario.classList.remove("hidden");
+      }
+    }
+  });
+}, { threshold: 0.3 });
+
+if (heroSection) headerObserver.observe(heroSection);
+if (coberturaSection) headerObserver.observe(coberturaSection);
+
+// Establecer estado inicial de los headers cuando el DOM esté listo
+window.addEventListener('DOMContentLoaded', () => {
+  // Asegurar que al cargar la página, el header primario esté visible
+  if (header) {
+    header.classList.remove("hidden");
+    header.classList.remove("header-hidden");
+  }
+  if (headerSecundario) {
+    headerSecundario.classList.add("hidden");
+  }
+  
+  // Después de un breve momento, permitir que el observer funcione normalmente
+  setTimeout(() => {
+    isInitialLoad = false;
+  }, 100);
+});
+
+// Control del show/hide por scrolling (header-hidden)
 container.addEventListener('scroll', () => {
   const currentScroll = container.scrollTop;
   const isScrollingDown = currentScroll > lastScrollTop;
 
-  // Si estamos en el footer, siempre ocultar ambos headers
+  // Si estamos en el footer, ocultar el header visible
   if (isInFooter) {
-    if (header) header.classList.add('header-hidden');
-    if (headerSecundario) headerSecundario.classList.add('header-hidden');
+    if (header && !header.classList.contains("hidden")) {
+      header.classList.add('header-hidden');
+    }
+    if (headerSecundario && !headerSecundario.classList.contains("hidden")) {
+      headerSecundario.classList.add('header-hidden');
+    }
   } else if (isInHeroOrCobertura()) {
     // Si estamos en hero o cobertura, siempre mostrar el header
-    if (header) header.classList.remove('header-hidden');
-    if (headerSecundario) headerSecundario.classList.remove('header-hidden');
+    if (header && !header.classList.contains("hidden")) {
+      header.classList.remove('header-hidden');
+    }
+    if (headerSecundario && !headerSecundario.classList.contains("hidden")) {
+      headerSecundario.classList.remove('header-hidden');
+    }
   } else {
     // En otras secciones, ocultar según scrolling
     if (isScrollingDown) {
-      if (header) header.classList.add('header-hidden');
-      if (headerSecundario) headerSecundario.classList.add('header-hidden');
+      if (header && !header.classList.contains("hidden")) {
+        header.classList.add('header-hidden');
+      }
+      if (headerSecundario && !headerSecundario.classList.contains("hidden")) {
+        headerSecundario.classList.add('header-hidden');
+      }
     } else {
-      if (header) header.classList.remove('header-hidden');
-      if (headerSecundario) headerSecundario.classList.remove('header-hidden');
+      if (header && !header.classList.contains("hidden")) {
+        header.classList.remove('header-hidden');
+      }
+      if (headerSecundario && !headerSecundario.classList.contains("hidden")) {
+        headerSecundario.classList.remove('header-hidden');
+      }
     }
   }
 
@@ -236,44 +289,6 @@ container.addEventListener('scroll', () => {
   });
 });
 //--- fin del scroll suave en la barra de navegacion ------------------
-
-// -----------funcion dle header dinamico-------------------
-
-const headerHero = document.getElementById("header");
-const headerGeneral= document.getElementById("header__secundario");
-const heroSection = document.getElementById("hero");
-const coberturaSection = document.getElementById("cobertura");
-
-// Mostrar el header de hero al cargar la página
-if (headerHero) {
-  headerHero.classList.remove("hidden");
-  headerHero.classList.remove("header-hidden");
-}
-
-// Ocultar el header secundario al cargar
-if (headerGeneral) {
-  headerGeneral.classList.add("hidden");
-}
-
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach((entry) => {
-    if (entry.target.id === "hero" || entry.target.id === "cobertura") {
-      if (entry.isIntersecting) {
-        // Mostrar header especial (primario/blanco) en hero y cobertura
-        if (headerGeneral) headerGeneral.classList.add("hidden");
-        if (headerHero) headerHero.classList.remove("hidden");
-        if (headerHero) headerHero.classList.remove("header-hidden");
-      } else {
-        // Mostrar header general
-        if (headerHero) headerHero.classList.add("hidden");
-        if (headerGeneral) headerGeneral.classList.remove("hidden");
-      }
-    }
-  });
-}, { threshold: 0.6 });
-
-if (heroSection) observer.observe(heroSection);
-if (coberturaSection) observer.observe(coberturaSection);
 
 // Ciclo de palabras del título del hero
 const rotatingWords = Array.from(document.querySelectorAll('.hero-title--rotating .rotating-word'));

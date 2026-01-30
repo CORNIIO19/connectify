@@ -340,6 +340,25 @@ color: #f1f1f1;
   pointer-events: none;
   transform: translateY(-20px);
 }
+
+/* Header primario visible al cargar */
+#header {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+#header.hidden {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-20px);
+}
+
+#header__secundario.hidden {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-20px);
+}
 /* -------------------Aqui termina header secundario------ */
 
 
