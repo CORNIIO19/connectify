@@ -247,6 +247,12 @@ const coberturaSection = document.getElementById("cobertura");
 // Mostrar el header de hero al cargar la página
 if (headerHero) {
   headerHero.classList.remove("hidden");
+  headerHero.classList.remove("header-hidden");
+}
+
+// Ocultar el header secundario al cargar
+if (headerGeneral) {
+  headerGeneral.classList.add("hidden");
 }
 
 const observer = new IntersectionObserver((entries) => {
@@ -254,19 +260,20 @@ const observer = new IntersectionObserver((entries) => {
     if (entry.target.id === "hero" || entry.target.id === "cobertura") {
       if (entry.isIntersecting) {
         // Mostrar header especial (primario/blanco) en hero y cobertura
-        headerGeneral.classList.add("hidden");
-        headerHero.classList.remove("hidden");
+        if (headerGeneral) headerGeneral.classList.add("hidden");
+        if (headerHero) headerHero.classList.remove("hidden");
+        if (headerHero) headerHero.classList.remove("header-hidden");
       } else {
         // Mostrar header general
-        headerHero.classList.add("hidden");
-        headerGeneral.classList.remove("hidden");
+        if (headerHero) headerHero.classList.add("hidden");
+        if (headerGeneral) headerGeneral.classList.remove("hidden");
       }
     }
   });
 }, { threshold: 0.6 });
 
-observer.observe(heroSection);
-observer.observe(coberturaSection);
+if (heroSection) observer.observe(heroSection);
+if (coberturaSection) observer.observe(coberturaSection);
 
 // Ciclo de palabras del título del hero
 const rotatingWords = Array.from(document.querySelectorAll('.hero-title--rotating .rotating-word'));

@@ -175,7 +175,7 @@ color: #f1f1f1;
   color: #ffffff;
   text-decoration: none;
   font-family:  "Poppins", mono;
-  font-size: 1.1rem;
+  font-size: 1rem;
   font-weight: 400;
   transition: color 0.3s, font-size 0.3s, font-weight 0.3s, transform 0.3s;
 }
@@ -247,7 +247,7 @@ color: #f1f1f1;
   color: black;
   text-decoration: none;
   font-family:  "Poppins", mono;
-  font-size: 1.1rem;
+  font-size: 1rem;
   font-weight: 400;
   transition: color 0.3s, font-size 0.3s, font-weight 0.3s, transform 0.3s;
 }
@@ -256,20 +256,20 @@ color: #f1f1f1;
   color: #000000;
   text-decoration: none;
   font-family:  "Poppins", mono;
-  font-size: 1.1rem;
+  font-size: 1rem;
   font-weight: 600;
   transition: color 0.3s, font-size 0.3s, font-weight 0.3s, transform 0.3s;
 }
 
 .link-header:hover, .link-header_identeidad:hover, .link-header_secundario:hover{
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   transform: translateY(-2px);
   font-weight: 800;
   color: #f5c542; /* Color al pasar el cursor */
 }
 
 .link-headerSec:hover, .link-header_identeidadSec:hover{
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   transform: translateY(-2px);
   font-weight: 800;
   color: #f5c542; /* Color al pasar el cursor */
@@ -1450,7 +1450,7 @@ background:#EDEFF2 50%;
 
 .main__cobertura{
   border-radius: 10px;
-  background:#000000;
+  background:#0e1117;
   color:white;
   padding-top: 110px;
   margin-top: 110px;
@@ -1480,8 +1480,8 @@ background:#EDEFF2 50%;
   /* background: #625e5e69; */
   border-radius: 10px;
   padding: 1rem;
-  box-shadow: 0 0 25px rgba(254, 203, 6, 0.35),
-              0 0 60px rgba(254, 203, 6, 0.18);
+  /* box-shadow: 0 0 25px rgba(254, 203, 6, 0.35),
+              0 0 60px rgba(254, 203, 6, 0.18); */
   margin-left: 15%;
   margin-right: 15%;
 }
