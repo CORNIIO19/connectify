@@ -30,17 +30,38 @@
 // });
 
 const header = document.querySelector('.header');
+const headerSecundario = document.querySelector('.header__secundario');
 const container = document.querySelector('.main');
 
 let lastScrollTop = 0;
+let isInFooter = false;
+
+// Usar IntersectionObserver para detectar el footer de forma confiable
+const footerElement = document.getElementById('footer');
+if (footerElement) {
+  const footerObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      isInFooter = entry.isIntersecting;
+      // Ocultar ambos headers inmediatamente cuando entramos al footer
+      if (isInFooter) {
+        if (header) header.classList.add('header-hidden');
+        if (headerSecundario) headerSecundario.classList.add('header-hidden');
+      }
+    });
+  }, { threshold: 0.1 });
+  
+  footerObserver.observe(footerElement);
+}
 
 // Función para verificar si estamos en hero o cobertura
 function isInHeroOrCobertura() {
+  const containerRect = container.getBoundingClientRect();
   const heroRect = document.getElementById('hero')?.getBoundingClientRect();
   const coberturaRect = document.getElementById('cobertura')?.getBoundingClientRect();
   
-  const inHero = heroRect && heroRect.top <= 100 && heroRect.bottom >= 100;
-  const inCobertura = coberturaRect && coberturaRect.top <= 100 && coberturaRect.bottom >= 100;
+  // Calcular posiciones relativas al contenedor
+  const inHero = heroRect && heroRect.top <= containerRect.top + 100 && heroRect.bottom >= containerRect.top + 100;
+  const inCobertura = coberturaRect && coberturaRect.top <= containerRect.top + 100 && coberturaRect.bottom >= containerRect.top + 100;
   
   return inHero || inCobertura;
 }
@@ -49,16 +70,23 @@ container.addEventListener('scroll', () => {
   const currentScroll = container.scrollTop;
   const isScrollingDown = currentScroll > lastScrollTop;
 
-  // Solo ocultar el header si NO estamos en hero o cobertura
-  if (!isInHeroOrCobertura()) {
-    if (isScrollingDown) {
-      header.classList.add('header-hidden');
-    } else {
-      header.classList.remove('header-hidden');
-    }
-  } else {
+  // Si estamos en el footer, siempre ocultar ambos headers
+  if (isInFooter) {
+    if (header) header.classList.add('header-hidden');
+    if (headerSecundario) headerSecundario.classList.add('header-hidden');
+  } else if (isInHeroOrCobertura()) {
     // Si estamos en hero o cobertura, siempre mostrar el header
-    header.classList.remove('header-hidden');
+    if (header) header.classList.remove('header-hidden');
+    if (headerSecundario) headerSecundario.classList.remove('header-hidden');
+  } else {
+    // En otras secciones, ocultar según scrolling
+    if (isScrollingDown) {
+      if (header) header.classList.add('header-hidden');
+      if (headerSecundario) headerSecundario.classList.add('header-hidden');
+    } else {
+      if (header) header.classList.remove('header-hidden');
+      if (headerSecundario) headerSecundario.classList.remove('header-hidden');
+    }
   }
 
   // Actualiza el último valor de scroll
