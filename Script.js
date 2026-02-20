@@ -124,20 +124,19 @@ container.addEventListener('scroll', () => {
       headerSecundario.classList.remove('header-hidden');
     }
   } else {
-    // En otras secciones, ocultar según scrolling
+    // En otras secciones, el header secundario siempre visible
+    if (headerSecundario && !headerSecundario.classList.contains("hidden")) {
+      headerSecundario.classList.remove('header-hidden');
+    }
+    
+    // El header primario se oculta solo si hace scroll hacia abajo
     if (isScrollingDown) {
       if (header && !header.classList.contains("hidden")) {
         header.classList.add('header-hidden');
       }
-      if (headerSecundario && !headerSecundario.classList.contains("hidden")) {
-        headerSecundario.classList.add('header-hidden');
-      }
     } else {
       if (header && !header.classList.contains("hidden")) {
         header.classList.remove('header-hidden');
-      }
-      if (headerSecundario && !headerSecundario.classList.contains("hidden")) {
-        headerSecundario.classList.remove('header-hidden');
       }
     }
   }
@@ -197,8 +196,18 @@ container.addEventListener('scroll', () => {
   }
 
   function updateCarousel() {
-    const slideWidth = slides[0].getBoundingClientRect().width;
-    track.style.transform = 'translateX(-' + slideWidth * currentIndex + 'px)';
+    // Detectar si estamos en mobile (max-width: 1024px)
+    const isMobile = window.innerWidth <= 1024;
+    
+    if (isMobile) {
+      // En mobile: scroll vertical con translateY
+      const slideHeight = slides[0].getBoundingClientRect().height;
+      track.style.transform = 'translateY(-' + slideHeight * currentIndex + 'px)';
+    } else {
+      // En desktop: scroll horizontal con translateX
+      const slideWidth = slides[0].getBoundingClientRect().width;
+      track.style.transform = 'translateX(-' + slideWidth * currentIndex + 'px)';
+    }
     animateSlideElements(currentIndex);
   }
 
@@ -378,6 +387,7 @@ scrollSections.forEach((section) => animateObserver.observe(section));
 // --------- Highlight Active Section in Header ---------
 const headerLinks = document.querySelectorAll('[data-section]');
 const sections = {
+  hero: document.getElementById('hero'),
   quienesSomos: document.getElementById('quienesSomos'),
   experiencias: document.getElementById('experiencias'),
   servicios: document.getElementById('servicios'),
@@ -399,6 +409,11 @@ function highlightActiveLink() {
       maxVisibility = visible;
       currentSection = sectionName;
     }
+  }
+
+  // Si estamos en el hero, no colorear ningún link
+  if (currentSection === 'hero') {
+    currentSection = null;
   }
 
   // Actualizar estilos de los links
@@ -519,4 +534,51 @@ document.addEventListener('DOMContentLoaded', () => {
     target.addEventListener('mouseenter', () => marker.classList.add('map-marker-lift'));
     target.addEventListener('mouseleave', () => marker.classList.remove('map-marker-lift'));
   });
+});
+
+// ====== HAMBURGUESA Y MENÚ MÓVIL ======
+const hamburger = document.getElementById('hamburger');
+const hamburgerSecundario = document.getElementById('hamburgerSecundario');
+const mobileMenu = document.getElementById('mobileMenu');
+const mobileMenuSecundario = document.getElementById('mobileMenuSecundario');
+const mobileMenuLinks = document.querySelectorAll('.mobile-menu__link');
+
+// Función para cerrar menú
+function closeMobileMenu() {
+  hamburger?.classList.remove('active');
+  hamburgerSecundario?.classList.remove('active');
+  mobileMenu?.classList.remove('active');
+  mobileMenuSecundario?.classList.remove('active');
+}
+
+// Toggle menú primario
+if (hamburger) {
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('active');
+    mobileMenu.classList.toggle('active');
+    mobileMenuSecundario?.classList.remove('active');
+    hamburgerSecundario?.classList.remove('active');
+  });
+}
+
+// Toggle menú secundario
+if (hamburgerSecundario) {
+  hamburgerSecundario.addEventListener('click', () => {
+    hamburgerSecundario.classList.toggle('active');
+    mobileMenuSecundario.classList.toggle('active');
+    mobileMenu?.classList.remove('active');
+    hamburger?.classList.remove('active');
+  });
+}
+
+// Cerrar menú al hacer click en un link
+mobileMenuLinks.forEach(link => {
+  link.addEventListener('click', () => {
+    closeMobileMenu();
+  });
+});
+
+// Cerrar menú al hacer scroll
+container.addEventListener('scroll', () => {
+  closeMobileMenu();
 });
